@@ -1,0 +1,76 @@
+#game div {
+    border: 5px white;
+    width: 15%;
+    height: 200px;
+    margin: 10px;
+    display: inline-table;
+    
+    
+    
+    
+  }
+  .card.hidden{
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  
+  
+    
+  
+  .card{
+    width: 50px;
+    height: 50px;
+    background-image: url(https://plus.unsplash.com/premium_photo-1701185652357-e9632c2b5969?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0MDJ8fHxlbnwwfHx8fHw%3D);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+    transition: background-color 0.3 ease-in-out;
+    cursor: pointer;
+    
+    
+  }
+  #score {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: tomato;
+  }
+  #restartBtn{
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: tomato;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin: 0 auto;
+    cursor: pointer;
+    
+  
+  }
+  
+  #startBtn{
+   display: block;
+  display: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: tomato;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  cursor: pointer;
+  
+  
+  
+  }
+  body{
+    background-color: black;
+    
+  
+  }
+  button:active{
+    transform: scale(.9);
+  }
+  

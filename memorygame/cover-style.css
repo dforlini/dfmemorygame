@@ -1,0 +1,32 @@
+body {
+   
+    background-color: black;
+
+}
+.cover-container{
+    text-align: center;
+
+}
+
+#startBtn{
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    color: tomato;
+    border-radius: 5px;
+
+
+}
+h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 50px;
+    color: tomato
+}
+h2{
+    font-size: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: tomato;
+}
+button:active{
+    transform: scale(.9);
+}
