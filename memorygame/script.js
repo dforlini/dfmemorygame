@@ -1,18 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   let colors = [];
   let shuffledColors = [];
-  let gameBoard = document.getElementById('game');
+  let gameBoard = document.getElementById("game");
   let selectedCards = [];
   let canFlip = true;
   let score = 0;
-  let highScore = localStorage.getItem('highScore') || Infinity;
+  let highScore = localStorage.getItem("highScore") || Infinity;
   let numCards = getRandomNumber(8, 12);
-  const scoreElement = document.getElementById('score');
-  const startBtn = document.getElementById('startBtn');
-  const restartBtn = document.getElementById('restartBtn');
+  const scoreElement = document.getElementById("score");
+  const startBtn = document.getElementById("startBtn");
+  const restartBtn = document.getElementById("restartBtn");
 
   function startGame() {
-
     numCards = getRandomNumber(8, 12);
     colors = generateColors(numCards);
     shuffledColors = [...colors].sort(() => Math.random() - 0.5);
@@ -23,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     startBtn.disabled = true;
     restartBtn.disabled = false;
   }
-
-
 
   function restartGame() {
     selectedCards = [];
@@ -37,9 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function generateColors(numCards) {
-    return Array.from({ length: numCards / 2 }, () => getRandomColor()).flatMap(color => [color, color]);
+    return Array.from({ length: numCards / 2 }, () => getRandomColor()).flatMap(
+      (color) => [color, color]
+    );
   }
-
 
   function getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -48,27 +46,30 @@ document.addEventListener('DOMContentLoaded', function () {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   function renderGameBoard() {
-    gameBoard.innerHTML = '';
-    shuffledColors.forEach(color => {
-      const card = document.createElement('div');
-      card.className = 'card';
+    gameBoard.innerHTML = "";
+    shuffledColors.forEach((color) => {
+      const card = document.createElement("div");
+      card.className = "card";
       card.style.backgroundImage = `url('https://plus.unsplash.com/premium_photo-1701185652357-e9632c2b5969?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0MDJ8fHxlbnwwfHx8fHw%3D   ')`;
-      card.addEventListener('click', function () {
+      card.addEventListener("click", function () {
         flipCard(card, color);
       });
 
       gameBoard.appendChild(card);
     });
-
   }
 
   function flipCard(card, color) {
-    console.log('you just clicked me');
-    if (!canFlip || selectedCards.length >= 2 || card.classList.contains('matched')) {
+    console.log("you just clicked me");
+    if (
+      !canFlip ||
+      selectedCards.length >= 2 ||
+      card.classList.contains("matched")
+    ) {
       return;
     }
 
-    card.style.backgroundImage = 'none';
+    card.style.backgroundImage = "none";
     card.style.backgroundColor = color;
     selectedCards.push(card);
 
@@ -76,43 +77,36 @@ document.addEventListener('DOMContentLoaded', function () {
       canFlip = false;
       setTimeout(checkMatch, 1000);
     }
-
   }
   function checkMatch() {
     const [card1, card2] = selectedCards;
     const isMatch = card1.style.backgroundColor === card2.style.backgroundColor;
 
     if (isMatch) {
-      card1.classList.add('matched');
-      card2.classList.add('matched');
+      card1.classList.add("matched");
+      card2.classList.add("matched");
       removeMatchedCards();
       score++;
-
-
-    }
-    else {
+    } else {
       setTimeout(() => {
-        card1.style.backgroundImage = '';
-        card2.style.backgroundImage = '';
-
-
+        card1.style.backgroundImage = "";
+        card2.style.backgroundImage = "";
       }, 500);
     }
     updateScore();
 
-    if (document.querySelectorAll('.matched').length === shuffledColors.length) {
+    if (
+      document.querySelectorAll(".matched").length === shuffledColors.length
+    ) {
       endGame();
     }
     selectedCards = [];
     canFlip = true;
-
   }
   function removeMatchedCards() {
-    document.querySelectorAll('.matched').forEach(card => {
-      card.classList.add('hidden');
+    document.querySelectorAll(".matched").forEach((card) => {
+      card.classList.add("hidden");
     });
-
-
   }
   function updateScore() {
     scoreElement.textContent = `Score: ${score}`;
@@ -122,18 +116,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (score < highScore) {
       highScore = score;
-      localStorage.setItem('highScore', highScore);
+      localStorage.setItem("highScore", highScore);
       alert(`New High Score: ${highScore}`);
     }
-    startBtn.style.display = 'block';
+    startBtn.style.display = "block";
     restartBtn.disabled = true;
     matchesMade = 0;
     startBtn.disabled = false;
   }
 
-  startBtn.addEventListener('click', startGame);
-  restartBtn.addEventListener('click', restartGame);
+  startBtn.addEventListener("click", startGame);
+  restartBtn.addEventListener("click", restartGame);
 
   startGame();
-
 });
